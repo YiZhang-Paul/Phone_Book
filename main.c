@@ -10,12 +10,14 @@ int main(void) {
     struct record *record2 = createRecord("Jim", "Raynor", "9056231226");
     struct record *record3 = createRecord("Pimp", "Aha", "1655234231");
     struct record *record4 = createRecord("Jack", "Zhen", "1441231233");
+    struct record *record5 = createRecord("Jackson", "Zhang", "5532432423");
     struct trieNode *trie = createTrieNode(NULL);
 
     addToTrie(trie, "zhang", record1);
     addToTrie(trie, "raynor", record2);
     addToTrie(trie, "aha", record3);
     addToTrie(trie, "zhen", record4);
+    addToTrie(trie, "zhang", record5);
 
     displayByKey(trie, "zhang");
     displayByKey(trie, "raynor");
@@ -38,6 +40,7 @@ int main(void) {
     freeRecord(record2);
     freeRecord(record3);
     freeRecord(record4);
+    freeRecord(record5);
 
     return 0;
 }

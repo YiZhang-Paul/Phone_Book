@@ -16,11 +16,6 @@ static void freeListNode(struct listNode * node, void freeData(void *)) {
     free(node);
 }
 
-static bool isEmpty(struct listNode * head) {
-
-    return head == NULL;
-}
-
 static struct listNode * getListTail(struct listNode * head) {
 
     while(head != NULL && head->next != NULL) {
@@ -29,6 +24,11 @@ static struct listNode * getListTail(struct listNode * head) {
     }
 
     return head;
+}
+
+bool isEmpty(struct listNode * head) {
+
+    return head == NULL;
 }
 
 void addToList(struct listNode ** head, void * data) {

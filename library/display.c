@@ -2,10 +2,18 @@
 
 static void tryDisplay(struct trieNode * node) {
 
-    if(node->data != NULL) {
+    if(isEmpty(node->dataList)) {
 
-        printRecord(node->data);
+        return;
+    }
+
+    struct listNode *head = node->dataList;
+
+    while(head != NULL) {
+
+        printRecord(head->data);
         printf("\n");
+        head = head->next;
     }
 }
 
@@ -13,7 +21,7 @@ void displayByKey(struct trieNode * root, char * keys) {
 
     struct trieNode *node = retrieveTrieNode(root, keys);
 
-    if(node == NULL || node->data == NULL) {
+    if(node == NULL || isEmpty(node->dataList)) {
 
         printf("Record not Found.\n");
 
