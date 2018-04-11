@@ -20,6 +20,19 @@ static bool isPrefix(struct trieNode * root, char * keys) {
     return retrieveTrieNode(root, keys) != NULL;
 }
 
+static bool isLeaf(struct trieNode * root) {
+
+    for(int i = 0; i < MAX_KEYS; i++) {
+
+        if(root->child[i] != NULL) {
+
+            return false;
+        }
+    }
+
+    return true;
+}
+
 struct trieNode * createTrieNode(void * data) {
 
     struct trieNode *trie = malloc(sizeof *trie);
@@ -75,7 +88,7 @@ void addToTrie(struct trieNode * root, char * keys, void * data) {
     }
 
     current->data = data;
-    current->isLeaf = true;
+    current->isLeaf = isLeaf(current);
 }
 
 void freeTrie(struct trieNode * root) {

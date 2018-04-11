@@ -17,7 +17,7 @@ struct trieNode {
 };
 
 static int getChildIndex(char);
-static bool isPrefix(struct trieNode *, char *);
+static bool isLeaf(struct trieNode *);
 struct trieNode * createTrieNode(void *);
 struct trieNode * retrieveTrieNode(struct trieNode *, char *);
 void addToTrie(struct trieNode *, char *, void *);

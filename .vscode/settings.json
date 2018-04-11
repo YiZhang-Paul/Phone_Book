@@ -10,6 +10,7 @@
         "linkedlist.h": "c",
         "trie.h": "c",
         "string.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "display.h": "c"
     },
 }
