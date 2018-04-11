@@ -3,6 +3,9 @@
         "c": "cd $workspaceRoot && gcc -g main.c library/*.c -o main && $workspaceRoot/main"
     },
     "files.associations": {
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "utility.h": "c",
+        "record.h": "c"
     },
 }
