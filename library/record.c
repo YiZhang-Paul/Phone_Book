@@ -1,7 +1,7 @@
 #include "../header/utility.h"
 #include "../header/record.h"
 
-struct phone * createPhone(int * digits, int length) {
+static struct phone * createPhone(int * digits, int length) {
 
     struct phone *phone = malloc(sizeof *phone);
 
@@ -11,7 +11,7 @@ struct phone * createPhone(int * digits, int length) {
     return phone;
 }
 
-void printPhone(struct phone * phone) {
+static void printPhone(struct phone * phone) {
 
     for(int i = 0; i < phone->length; i++) {
 
@@ -19,7 +19,7 @@ void printPhone(struct phone * phone) {
     }
 }
 
-void freePhone(struct phone * phone) {
+static void freePhone(struct phone * phone) {
 
     free(phone->digits);
     free(phone);

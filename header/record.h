@@ -17,9 +17,9 @@ struct record {
     struct phone *phone;
 };
 
-struct phone * createPhone(int *, int);
-void printPhone(struct phone *);
-void freePhone(struct phone *);
+static struct phone * createPhone(int *, int);
+static void printPhone(struct phone *);
+static void freePhone(struct phone *);
 struct record * createRecord(char *, char *, int *, int);
 void printRecord(struct record *);
 void freeRecord(struct record *);

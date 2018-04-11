@@ -6,6 +6,7 @@
         "stdlib.h": "c",
         "stdio.h": "c",
         "utility.h": "c",
-        "record.h": "c"
+        "record.h": "c",
+        "linkedlist.h": "c"
     },
 }
