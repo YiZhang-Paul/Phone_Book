@@ -12,7 +12,12 @@ static int getChildIndex(char key) {
         return tolower(key) - 'a' + 10;
     }
 
-    return 36;
+    return MAX_KEYS - 1;
+}
+
+static bool isPrefix(struct trieNode * root, char * keys) {
+
+    return retrieveTrieNode(root, keys) != NULL;
 }
 
 struct trieNode * createTrieNode(void * data) {
@@ -23,7 +28,31 @@ struct trieNode * createTrieNode(void * data) {
     trie->isLeaf = false;
     trie->data = data;
 
+    for(int i = 0; i < MAX_KEYS; i++) {
+
+        trie->child[i] = NULL;
+    }
+
     return trie;
+}
+
+struct trieNode * retrieveTrieNode(struct trieNode * root, char * keys) {
+
+    struct trieNode *current = root;
+
+    for(int i = 0; i < strlen(keys); i++) {
+
+        const int index = getChildIndex(keys[i]);
+
+        if(current->child[index] == NULL) {
+
+            return NULL;
+        }
+
+        current = current->child[index];
+    }
+
+    return current;
 }
 
 void addToTrie(struct trieNode * root, char * keys, void * data) {
@@ -32,10 +61,17 @@ void addToTrie(struct trieNode * root, char * keys, void * data) {
 
     for(int i = 0; i < strlen(keys); i++) {
 
-        struct trieNode *child = createTrieNode(NULL);
-        current->child[getChildIndex(keys[i])] = child;
-        child->parent = current;
-        current = child;
+        const int index = getChildIndex(keys[i]);
+
+        if(current->child[index] == NULL) {
+
+            struct trieNode *child = createTrieNode(NULL);
+            child->parent = current;
+            current->child[index] = child;
+        }
+
+        current = current->child[index];
+        current->isLeaf = false;
     }
 
     current->data = data;
@@ -44,5 +80,5 @@ void addToTrie(struct trieNode * root, char * keys, void * data) {
 
 void freeTrie(struct trieNode * root) {
 
-    
+
 }

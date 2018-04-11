@@ -8,6 +8,8 @@
         "utility.h": "c",
         "record.h": "c",
         "linkedlist.h": "c",
-        "trie.h": "c"
+        "trie.h": "c",
+        "string.h": "c",
+        "stdbool.h": "c"
     },
 }
