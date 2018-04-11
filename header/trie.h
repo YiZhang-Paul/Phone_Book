@@ -20,8 +20,9 @@ struct trieNode {
 static int getChildIndex(char);
 static bool isLeaf(struct trieNode *);
 struct trieNode * createTrieNode();
+static void freeTrieNode(struct trieNode *, void freeData(void *));
 struct trieNode * retrieveTrieNode(struct trieNode *, char *);
 void addToTrie(struct trieNode *, char *, void *);
-void freeTrie(struct trieNode *);
+void freeTrie(struct trieNode *, void freeData(void *));
 
 #endif

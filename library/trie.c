@@ -49,6 +49,17 @@ struct trieNode * createTrieNode() {
     return trie;
 }
 
+static void freeTrieNode(struct trieNode * node, void freeData(void *)) {
+
+    if(node->parent == NULL) {
+
+        return;
+    }
+
+    freeList(&(node->dataList), freeData);
+    free(node);
+}
+
 struct trieNode * retrieveTrieNode(struct trieNode * root, char * keys) {
 
     struct trieNode *current = root;
@@ -91,7 +102,22 @@ void addToTrie(struct trieNode * root, char * keys, void * data) {
     current->isLeaf = isLeaf(current);
 }
 
-void freeTrie(struct trieNode * root) {
+void freeTrie(struct trieNode * root, void freeData(void *)) {
 
+    if(root->isLeaf) {
 
+        freeTrieNode(root, freeData);
+
+        return;
+    }
+
+    for(int i = 0; i < MAX_KEYS; i++) {
+
+        if(root->child[i] != NULL) {
+
+            freeTrie(root->child[i], freeData);
+        }
+    }
+
+    freeTrieNode(root, freeData);
 }

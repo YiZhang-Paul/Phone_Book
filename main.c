@@ -36,11 +36,7 @@ int main(void) {
     displayDescending(trie);
     printf("\n");
 
-    freeRecord(record1);
-    freeRecord(record2);
-    freeRecord(record3);
-    freeRecord(record4);
-    freeRecord(record5);
+    freeTrie(trie, freeRecord);
 
     return 0;
 }

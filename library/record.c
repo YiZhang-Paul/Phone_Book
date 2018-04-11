@@ -17,10 +17,12 @@ void printRecord(struct record * record) {
     printf("Name: %s, %s; Phone: %s", record->firstName, record->lastName, record->phone);
 }
 
-void freeRecord(struct record * record) {
+void freeRecord(void * record) {
 
-    free(record->firstName);
-    free(record->lastName);
-    free(record->phone);
-    free(record);
+    struct record *toFree = (struct record *)record;
+
+    free(toFree->firstName);
+    free(toFree->lastName);
+    free(toFree->phone);
+    free(toFree);
 }
