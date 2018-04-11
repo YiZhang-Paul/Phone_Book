@@ -23,6 +23,7 @@ struct trieNode * createTrieNode();
 static void freeTrieNode(struct trieNode *, void freeData(void *));
 struct trieNode * retrieveTrieNode(struct trieNode *, char *);
 void addToTrie(struct trieNode *, char *, void *);
+void deleteFromTrie(struct trieNode *, char *, void freeData(void *));
 void freeTrie(struct trieNode *, void freeData(void *));
 
 #endif

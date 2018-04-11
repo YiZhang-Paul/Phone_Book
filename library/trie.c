@@ -102,6 +102,16 @@ void addToTrie(struct trieNode * root, char * keys, void * data) {
     current->isLeaf = isLeaf(current);
 }
 
+void deleteFromTrie(struct trieNode * root, char * keys, void freeData(void *)) {
+
+    struct trieNode *node = retrieveTrieNode(root, keys);
+
+    if(node != NULL) {
+
+        freeList(&(node->dataList), freeData);
+    }
+}
+
 void freeTrie(struct trieNode * root, void freeData(void *)) {
 
     if(root->isLeaf) {

@@ -19,6 +19,11 @@ int main(void) {
     addToTrie(trie, "zhen", record4);
     addToTrie(trie, "zhang", record5);
 
+    deleteFromTrie(trie, "zhang", freeRecord);
+    deleteFromTrie(trie, "aha", freeRecord);
+    deleteFromTrie(trie, "zhen", freeRecord);
+    deleteFromTrie(trie, "raynnn", freeRecord);
+
     displayByKey(trie, "zhang");
     displayByKey(trie, "raynor");
     displayByKey(trie, "aha");
