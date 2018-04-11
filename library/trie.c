@@ -44,5 +44,5 @@ void addToTrie(struct trieNode * root, char * keys, void * data) {
 
 void freeTrie(struct trieNode * root) {
 
-
+    
 }

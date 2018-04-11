@@ -4,23 +4,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct phone {
-
-    int *digits;
-    int length;
-};
-
 struct record {
 
     char *firstName;
     char *lastName;
-    struct phone *phone;
+    char *phone;
 };
 
-static struct phone * createPhone(int *, int);
-static void printPhone(struct phone *);
-static void freePhone(struct phone *);
-struct record * createRecord(char *, char *, int *, int);
+struct record * createRecord(char *, char *, char *);
 void printRecord(struct record *);
 void freeRecord(struct record *);
 
