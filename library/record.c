@@ -17,6 +17,18 @@ struct record * copyRecord(struct record * record) {
     return createRecord(record->firstName, record->lastName, record->phone);
 }
 
+bool isSameRecord(struct record * record1, struct record * record2) {
+
+    char *details1 = getRecordDetail(record1);
+    char *details2 = getRecordDetail(record2);
+    bool result = isSame(details1, details2);
+
+    free(details1);
+    free(details2);
+
+    return result;
+}
+
 char * getRecordDetail(struct record * record) {
 
     char *details[5] = { "Name:", record->firstName, record->lastName, "Phone:", record->phone };

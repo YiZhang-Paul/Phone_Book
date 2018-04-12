@@ -110,7 +110,7 @@ void deleteFromTrie(struct trieNode * root, char * keys, struct record * record,
 
         struct listNode *current = node->dataList;
 
-        if(current->data == record) {
+        if(isSameRecord(current->data, record)) {
 
             node->dataList = current->next;
             freeListNode(current, freeData);
@@ -123,7 +123,7 @@ void deleteFromTrie(struct trieNode * root, char * keys, struct record * record,
 
         while(current != NULL) {
 
-            if(current->data == record) {
+            if(isSameRecord(current->data, record)) {
 
                 previous->next = current->next;
                 freeListNode(current, freeData);

@@ -9,6 +9,24 @@ char * readLine(int length) {
     return line;
 }
 
+bool isSame(char * text1, char * text2) {
+
+    if(strlen(text1) != strlen(text2)) {
+
+        return false;
+    }
+
+    for(int i = 0; i < strlen(text1); i++) {
+
+        if(text1[i] != text2[i]) {
+
+            return false;
+        }
+    }
+
+    return true;
+}
+
 int countTotalLength(char ** splitted, int total) {
 
     int length = 0;

@@ -1,5 +1,3 @@
-Nick|James|1113
 Pimp|Aha|1655234231
 David|Wu|6472428108
 Yi|Zhang|6472428109
-Man|Dan|9062343232

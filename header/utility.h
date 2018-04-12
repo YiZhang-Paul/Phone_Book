@@ -10,6 +10,7 @@
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
 char * readLine(int);
+bool isSame(char *, char *);
 int countTotalLength(char **, int);
 char * copyText(char *);
 char * getSubstring(char *, int, int);

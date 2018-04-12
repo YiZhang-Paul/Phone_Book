@@ -15,6 +15,7 @@ struct record {
 
 struct record * createRecord(char *, char *, char *);
 struct record * copyRecord(struct record *);
+bool isSameRecord(struct record *, struct record *);
 char * getRecordDetail(struct record *);
 void printRecord(struct record *);
 void saveRecord(struct record *, char *);

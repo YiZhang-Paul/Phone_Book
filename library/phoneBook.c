@@ -369,7 +369,7 @@ void run(void) {
 
             case 4 :
 
-                printf("<How Do You Want to Search the Records? (Enter Option Number to Proceed)>");
+                printf("<How Do You Want to Search the Records? (Enter Option Number to Proceed)>\n");
                 printf("1. By First Name\n");
                 printf("2. By Last Name\n");
                 printf("3. By Phone Number\n");
