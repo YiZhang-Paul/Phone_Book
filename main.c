@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "header/utility.h"
 #include "header/record.h"
 #include "header/trie.h"
 #include "header/display.h"
@@ -42,6 +43,16 @@ int main(void) {
     printf("\n");
 
     freeTrie(trie, freeRecord);
+
+    int total = 0;
+    char **splitted = split("Yi|Zhang|6472428108", '|', &total);
+
+    for(int i = 0; i < total; i++) {
+
+        printf("%s ", splitted[i]);
+    }
+
+    printf("\n%s ", join(splitted, '|', total));
 
     return 0;
 }
