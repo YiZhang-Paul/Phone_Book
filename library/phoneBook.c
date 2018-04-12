@@ -15,9 +15,17 @@ static void initialize(void) {
     position = 0;
 }
 
+static char * readLine(void) {
+
+    char *line = malloc(LINE_LENGTH);
+    line = fgets(line, LINE_LENGTH, stdin);
+    line[strlen(line) - 1] = '\0';
+
+    return line;
+}
+
 static void quit(void) {
 
-    getchar();
     printf("<Exiting Program, Press Any Key to Proceed.>");
     getchar();
     exit(0);
@@ -29,15 +37,25 @@ static void saveAll(void) {
     save(tries[2], FILE_NAME);
 }
 
-static void getMainMenuOption(void) {
+static void getMainOption(void) {
 
-    char input = getchar();
+    char *input = readLine();
 
-    switch(input) {
+    if(!isValidOption(input, 1, 5)) {
+
+        printf("<Invalid Option, Please Choose Again.>\n");
+        getMainOption();
+
+        free(input);
+
+        return;
+    }
+
+    switch(input[0]) {
 
         case '1' : case '2' : case '3' : case '4' :
 
-            position = input - '0';
+            position = input[0] - '0';
 
             break;
 
@@ -46,16 +64,41 @@ static void getMainMenuOption(void) {
             quit();
 
             break;
-
-        default :
-
-            if(input != '\n') {
-
-                printf("<(Option %c) Invalid Option, Please Choose Again.>\n", input);
-            }
-
-            getMainMenuOption();
     }
+
+    free(input);
+}
+
+static void getDeleteOption(void) {
+
+    printf("<Enter Phone Number You Wish to Delete:>");
+    char *input = readLine();
+
+    if(!isValidInput(input)) {
+
+        printf("<Invalid Phone Number. Please Enter Again.>\n");
+        getDeleteOption();
+
+        free(input);
+
+        return;
+    }
+
+    struct trieNode *node = retrieveTrieNode(tries[2], input);
+
+    if(node == NULL || isEmpty(node->dataList)) {
+
+        printf("\nRecord not Found.\n\n");
+    }
+    else {
+
+        printf("\nRecord: ");
+        printRecord(node->dataList->data);
+        printf(" is Deleted Successfully.\n\n");
+        deleteFromTrie(tries[2], input, freeRecord);
+    }
+
+    position = 0;
 }
 
 void run(void) {
@@ -68,15 +111,30 @@ void run(void) {
 
             case 0 :
 
-                printf("<What would you like to do? (enter option number to proceed)>\n");
+                printf("<What Would You Like to Do? (Enter Option Number to Proceed)>\n");
                 printf("1. Add Record\n");
                 printf("2. Delete Record\n");
                 printf("3. Update Record\n");
                 printf("4. Display Record(s)\n");
                 printf("5. Exit Program\n");
-                getMainMenuOption();
-        }
+                getMainOption();
 
-        break;
+                break;
+
+            case 1 :
+
+
+
+            case 2 :
+
+                getDeleteOption();
+
+                break;
+
+            case 3 :
+            case 4 :
+
+                break;
+        }
     }
 }

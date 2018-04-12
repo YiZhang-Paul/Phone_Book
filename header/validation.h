@@ -7,5 +7,6 @@
 
 static bool isValidCharacter(char);
 bool isValidInput(char *);
+bool isValidOption(char *, int, int);
 
 #endif

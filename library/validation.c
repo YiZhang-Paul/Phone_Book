@@ -22,3 +22,13 @@ bool isValidInput(char * input) {
 
     return true;
 }
+
+bool isValidOption(char * option, int min, int max) {
+
+    if(strlen(option) != 1) {
+
+        return false;
+    }
+
+    return option[0] - '0' >= min && option[0] - '0' <= max;
+}

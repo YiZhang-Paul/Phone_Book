@@ -2,6 +2,7 @@
 #define PHONE_BOOK_H
 
 #include <stdio.h>
+#include "../header/linkedList.h"
 #include "../header/trie.h"
 #include "../header/record.h"
 #include "../header/storage.h"
