@@ -118,6 +118,15 @@ static void getMainOption(void) {
     free(input);
 }
 
+static void getAddOption(void) {
+
+    printf("<Enter Record Details:>\n");
+    struct record *record = addRecord();
+    printf("%s\n\n", record == NULL ? "Failed to Add New Record." : "Record Added Successfully.");
+
+    position = 0;
+}
+
 static void getDeleteOption(void) {
 
     printf("<Enter Associated Phone Number You Wish to Delete:>");
@@ -185,6 +194,9 @@ void getUpdateOption(void) {
             printf("\nUpdate Failed.\n\n");
 
             free(details);
+            free(input);
+
+            position = 0;
 
             return;
         }
@@ -223,7 +235,9 @@ void run(void) {
 
             case 1 :
 
-                
+                getAddOption();
+
+                break;
 
             case 2 :
 
