@@ -35,6 +35,70 @@ static char * getInformation(char * attribute, bool failed) {
     return input;
 }
 
+static void showListOption(void) {
+
+    printf("<How Should Records be Displayed? (Enter Option Number to Proceed)>\n");
+    printf("1. By Exact Entry\n");
+    printf("2. By Prefix of Entries\n");
+    printf("3. By Ascending Order\n");
+    printf("4. By Descending Order\n");
+}
+
+static int getListOption(void) {
+
+    char *input = readLine(LINE_LENGTH);
+
+    if(!isValidOption(input, 1, 4)) {
+
+        free(input);
+        printf("<Invalid Option, Please Choose Again.>\n");
+
+        return getListOption();
+    }
+
+    const int option = input[0] - '0';
+
+    free(input);
+
+    return option;
+}
+
+static void listByAttribute(struct trieNode * root, char * attribute) {
+
+    char *input;
+
+    switch(getListOption()) {
+
+        case 1 :
+
+            input = getInformation(attribute, false);
+            displayByKey(root, input);
+
+            break;
+
+        case 2 :
+
+            input = getInformation(attribute, false);
+            displayByPrefix(root, input);
+
+            break;
+
+        case 3 :
+
+            displayAscending(root);
+
+            break;
+
+        case 4 :
+
+            displayDescending(root);
+
+            break;
+    }
+
+    free(input);
+}
+
 static void addRecordToTries(char * firstName, char * lastName, char * phone) {
 
     addToTrie(tries[0], firstName, createRecord(firstName, lastName, phone));
@@ -224,70 +288,6 @@ static void updateMenu(void) {
     position = 0;
 }
 
-static void showListOption(void) {
-
-    printf("<How Should Records be Displayed? (Enter Option Number to Proceed)>\n");
-    printf("1. By Exact Entry\n");
-    printf("2. By Prefix of Entries\n");
-    printf("3. By Ascending Order\n");
-    printf("4. By Descending Order\n");
-}
-
-static int getListOption(void) {
-
-    char *input = readLine(LINE_LENGTH);
-
-    if(!isValidOption(input, 1, 4)) {
-
-        free(input);
-        printf("<Invalid Option, Please Choose Again.>\n");
-
-        return getListOption();
-    }
-
-    const int option = input[0] - '0';
-
-    free(input);
-
-    return option;
-}
-
-static void listByAttribute(struct trieNode * root, char * attribute) {
-
-    char *input;
-
-    switch(getListOption()) {
-
-        case 1 :
-
-            input = getInformation(attribute, false);
-            displayByKey(root, input);
-
-            break;
-
-        case 2 :
-
-            input = getInformation(attribute, false);
-            displayByPrefix(root, input);
-
-            break;
-
-        case 3 :
-
-            displayAscending(root);
-
-            break;
-
-        case 4 :
-
-            displayDescending(root);
-
-            break;
-    }
-
-    free(input);
-}
-
 static void listMenu(void) {
 
     char *input = readLine(LINE_LENGTH);
@@ -327,6 +327,8 @@ static void listMenu(void) {
     }
 
     free(input);
+
+    position = 0;
 }
 
 void run(void) {
