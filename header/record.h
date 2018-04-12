@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define FIELDS 3
+
 struct record {
 
     char *firstName;

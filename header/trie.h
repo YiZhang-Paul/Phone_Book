@@ -19,7 +19,7 @@ struct trieNode {
 
 static int getChildIndex(char);
 static bool isLeaf(struct trieNode *);
-struct trieNode * createTrieNode();
+struct trieNode * createTrieNode(void);
 static void freeTrieNode(struct trieNode *, void freeData(void *));
 struct trieNode * retrieveTrieNode(struct trieNode *, char *);
 void addToTrie(struct trieNode *, char *, void *);

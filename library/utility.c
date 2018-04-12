@@ -67,3 +67,10 @@ char * join(char ** splitted, const char character, int total) {
 
     return joined;
 }
+
+void createFile(char * fileName) {
+
+    FILE *file = fopen(fileName, "w");
+
+    fclose(file);
+}

@@ -33,7 +33,7 @@ static bool isLeaf(struct trieNode * root) {
     return true;
 }
 
-struct trieNode * createTrieNode() {
+struct trieNode * createTrieNode(void) {
 
     struct trieNode *trie = malloc(sizeof *trie);
 
@@ -89,7 +89,7 @@ void addToTrie(struct trieNode * root, char * keys, void * data) {
 
         if(current->child[index] == NULL) {
 
-            struct trieNode *child = createTrieNode(NULL);
+            struct trieNode *child = createTrieNode();
             child->parent = current;
             current->child[index] = child;
         }
