@@ -8,28 +8,38 @@
 
 int main(void) {
 
-    struct trieNode *trie = createTrieNode(NULL);
+    struct trieNode *firstNames = createTrieNode(NULL);
+    struct trieNode *lastNames = createTrieNode(NULL);
+    struct trieNode *phones = createTrieNode(NULL);
+    struct trieNode *tries[3] = { firstNames, lastNames, phones };
 
-    load(trie, 1, "records.txt");
+    load(tries, "records.txt");
 
-    displayByKey(trie, "zhang");
-    displayByKey(trie, "raynor");
-    displayByKey(trie, "aha");
-    displayByKey(trie, "zhen");
-    displayByKey(trie, "zh");
+    displayByKey(lastNames, "zhang");
+    displayByKey(lastNames, "raynor");
+    displayByKey(lastNames, "aha");
+    displayByKey(lastNames, "zhen");
+    displayByKey(lastNames, "zh");
     printf("\n");
 
-    displayByPrefix(trie, "zh");
-    displayByPrefix(trie, "j");
-    displayByPrefix(trie, "ra");
+    displayByPrefix(lastNames, "zh");
+    displayByPrefix(lastNames, "j");
+    displayByPrefix(lastNames, "ra");
     printf("\n");
 
-    displayAscending(trie);
-    printf("\n");
-    displayDescending(trie);
+    displayByPrefix(firstNames, "zh");
+    displayByPrefix(firstNames, "ja");
+    displayByPrefix(firstNames, "ra");
     printf("\n");
 
-    freeTrie(trie, freeRecord);
+    displayAscending(lastNames);
+    printf("\n");
+    displayDescending(lastNames);
+    printf("\n");
+
+    // freeTrie(firstNames, freeRecord);
+    // freeTrie(lastNames, freeRecord);
+    // freeTrie(phones, freeRecord);
 
     return 0;
 }

@@ -1,7 +1,7 @@
 #include "../header/utility.h"
 #include "../header/storage.h"
 
-void load(struct trieNode * root, int index, char * fileName) {
+void load(struct trieNode ** tries, char * fileName) {
 
     FILE *file = fopen(fileName, "r");
     char *line = malloc(LINE_LENGTH);
@@ -15,7 +15,12 @@ void load(struct trieNode * root, int index, char * fileName) {
             line[strlen(line) - 1] = '\0';
             int total = 0;
             char **keys = split(line, '|', &total);
-            addToTrie(root, keys[index], createRecord(keys[0], keys[1], keys[2]));
+            struct record *record = createRecord(keys[0], keys[1], keys[2]);
+
+            for(int i = 0; i < total; i++) {
+
+                addToTrie(tries[i], keys[i], record);
+            }
 
             line = fgets(line, LINE_LENGTH, file);
         }

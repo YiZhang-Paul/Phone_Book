@@ -8,7 +8,7 @@
 
 #define LINE_LENGTH 256
 
-void load(struct trieNode *, int, char *);
+void load(struct trieNode **, char *);
 void save(struct trieNode *, char *);
 
 #endif
