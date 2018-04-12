@@ -124,6 +124,11 @@ static void getAddOption(void) {
     struct record *record = addRecord();
     printf("%s\n\n", record == NULL ? "Failed to Add New Record." : "Record Added Successfully.");
 
+    if(record != NULL) {
+
+        saveAll();
+    }
+
     position = 0;
 }
 
@@ -153,6 +158,7 @@ static void getDeleteOption(void) {
         char *details = getRecordDetail(node->dataList->data);
         deleteRecord(node->dataList->data);
         printf("\nRecord: %s is Deleted Successfully.\n\n", details);
+        saveAll();
 
         free(details);
     }
@@ -203,6 +209,7 @@ void getUpdateOption(void) {
 
         char *newDetails = getRecordDetail(newRecord);
         printf("\nUpdate Successful.\nOld: %s\nNew: %s\n\n", details, newDetails);
+        saveAll();
 
         free(details);
         free(newDetails);
