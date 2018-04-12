@@ -12,6 +12,7 @@
         "string.h": "c",
         "stdbool.h": "c",
         "display.h": "c",
-        "ctype.h": "c"
+        "ctype.h": "c",
+        "storage.h": "c"
     },
 }

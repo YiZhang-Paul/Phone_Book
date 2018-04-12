@@ -25,7 +25,7 @@ void saveRecord(struct record * record, char * fileName) {
 
         char *information[] = { record->firstName, record->lastName, record->phone };
 
-        fprintf(file, "%s", join(information, '|', 3));
+        fprintf(file, "%s\n", join(information, '|', 3));
     }
 
     fclose(file);

@@ -8,23 +8,9 @@
 
 int main(void) {
 
-    struct record *record1 = createRecord("Yi", "Zhang", "6472428108");
-    struct record *record2 = createRecord("Jim", "Raynor", "9056231226");
-    struct record *record3 = createRecord("Pimp", "Aha", "1655234231");
-    struct record *record4 = createRecord("Jack", "Zhen", "1441231233");
-    struct record *record5 = createRecord("Jackson", "Zhang", "5532432423");
     struct trieNode *trie = createTrieNode(NULL);
 
-    addToTrie(trie, "zhang", record1);
-    addToTrie(trie, "raynor", record2);
-    addToTrie(trie, "aha", record3);
-    addToTrie(trie, "zhen", record4);
-    addToTrie(trie, "zhang", record5);
-
-    deleteFromTrie(trie, "zhang", freeRecord);
-    deleteFromTrie(trie, "aha", freeRecord);
-    deleteFromTrie(trie, "zhen", freeRecord);
-    deleteFromTrie(trie, "raynnn", freeRecord);
+    load(trie, 1, "records.txt");
 
     displayByKey(trie, "zhang");
     displayByKey(trie, "raynor");
@@ -42,8 +28,6 @@ int main(void) {
     printf("\n");
     displayDescending(trie);
     printf("\n");
-
-    save(trie, "records.txt");
 
     freeTrie(trie, freeRecord);
 

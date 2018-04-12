@@ -6,7 +6,9 @@
 #include "../header/linkedList.h"
 #include "../header/record.h"
 
-void load(struct trieNode *, char *);
+#define LINE_LENGTH 256
+
+void load(struct trieNode *, int, char *);
 void save(struct trieNode *, char *);
 
 #endif
