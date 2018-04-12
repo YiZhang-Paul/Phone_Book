@@ -13,6 +13,7 @@ struct record {
 
 struct record * createRecord(char *, char *, char *);
 void printRecord(struct record *);
+void saveRecord(struct record *, char *);
 void freeRecord(void *);
 
 #endif

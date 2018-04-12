@@ -4,6 +4,7 @@
 #include "header/record.h"
 #include "header/trie.h"
 #include "header/display.h"
+#include "header/storage.h"
 
 int main(void) {
 
@@ -42,17 +43,9 @@ int main(void) {
     displayDescending(trie);
     printf("\n");
 
+    save(trie, "records.txt");
+
     freeTrie(trie, freeRecord);
-
-    int total = 0;
-    char **splitted = split("Yi|Zhang|6472428108", '|', &total);
-
-    for(int i = 0; i < total; i++) {
-
-        printf("%s ", splitted[i]);
-    }
-
-    printf("\n%s ", join(splitted, '|', total));
 
     return 0;
 }

@@ -17,6 +17,20 @@ void printRecord(struct record * record) {
     printf("Name: %s, %s; Phone: %s", record->firstName, record->lastName, record->phone);
 }
 
+void saveRecord(struct record * record, char * fileName) {
+
+    FILE *file = fopen(fileName, "a");
+
+    if(file) {
+
+        char *information[] = { record->firstName, record->lastName, record->phone };
+
+        fprintf(file, "%s", join(information, '|', 3));
+    }
+
+    fclose(file);
+}
+
 void freeRecord(void * record) {
 
     struct record *toFree = (struct record *)record;
