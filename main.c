@@ -37,9 +37,9 @@ int main(void) {
     displayDescending(lastNames);
     printf("\n");
 
-    // freeTrie(firstNames, freeRecord);
-    // freeTrie(lastNames, freeRecord);
-    // freeTrie(phones, freeRecord);
+    freeTrie(firstNames, freeRecord);
+    freeTrie(lastNames, freeRecord);
+    freeTrie(phones, freeRecord);
 
     return 0;
 }

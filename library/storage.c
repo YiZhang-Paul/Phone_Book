@@ -15,11 +15,10 @@ void load(struct trieNode ** tries, char * fileName) {
             line[strlen(line) - 1] = '\0';
             int total = 0;
             char **keys = split(line, '|', &total);
-            struct record *record = createRecord(keys[0], keys[1], keys[2]);
 
             for(int i = 0; i < total; i++) {
 
-                addToTrie(tries[i], keys[i], record);
+                addToTrie(tries[i], keys[i], createRecord(keys[0], keys[1], keys[2]));
             }
 
             line = fgets(line, LINE_LENGTH, file);
