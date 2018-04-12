@@ -11,7 +11,7 @@ struct listNode {
 };
 
 static struct listNode * createListNode(void *);
-static void freeListNode(struct listNode *, void freeData(void *));
+void freeListNode(struct listNode *, void freeData(void *));
 static struct listNode * getListTail(struct listNode *);
 bool isEmpty(struct listNode *);
 void addToList(struct listNode **, void *);

@@ -10,7 +10,7 @@ static struct listNode * createListNode(void * data) {
     return node;
 }
 
-static void freeListNode(struct listNode * node, void freeData(void *)) {
+void freeListNode(struct listNode * node, void freeData(void *)) {
 
     freeData(node->data);
     free(node);

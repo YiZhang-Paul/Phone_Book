@@ -14,6 +14,7 @@ struct record {
 };
 
 struct record * createRecord(char *, char *, char *);
+char * getRecordDetail(struct record *);
 void printRecord(struct record *);
 void saveRecord(struct record *, char *);
 void freeRecord(void *);

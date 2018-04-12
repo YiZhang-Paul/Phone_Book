@@ -12,9 +12,19 @@ struct record * createRecord(char * firstName, char * lastName, char * phone) {
     return record;
 }
 
+char * getRecordDetail(struct record * record) {
+
+    char *details[5] = { "Name:", record->firstName, record->lastName, "Phone:", record->phone };
+
+    return join(details, ' ', 5);
+}
+
 void printRecord(struct record * record) {
 
-    printf("Name: %s, %s; Phone: %s", record->firstName, record->lastName, record->phone);
+    char *details = getRecordDetail(record);
+    printf("%s", details);
+
+    free(details);
 }
 
 void saveRecord(struct record * record, char * fileName) {

@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include "../header/linkedList.h"
+#include "../header/record.h"
 
 #define MAX_KEYS 37
 
@@ -23,7 +24,7 @@ struct trieNode * createTrieNode(void);
 static void freeTrieNode(struct trieNode *, void freeData(void *));
 struct trieNode * retrieveTrieNode(struct trieNode *, char *);
 void addToTrie(struct trieNode *, char *, void *);
-void deleteFromTrie(struct trieNode *, char *, void freeData(void *));
+void deleteFromTrie(struct trieNode *, char *, struct record *, void freeData(void *));
 void freeTrie(struct trieNode *, void freeData(void *));
 
 #endif

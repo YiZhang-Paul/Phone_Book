@@ -31,6 +31,18 @@ static void quit(void) {
     exit(0);
 }
 
+static struct record * addRecord(void) {
+
+
+}
+
+static void deleteRecord(struct record * record) {
+
+    deleteFromTrie(tries[0], record->firstName, record, freeRecord);
+    deleteFromTrie(tries[1], record->lastName, record, freeRecord);
+    deleteFromTrie(tries[2], record->phone, record, freeRecord);
+}
+
 static void saveAll(void) {
 
     createFile(FILE_NAME);
@@ -71,7 +83,7 @@ static void getMainOption(void) {
 
 static void getDeleteOption(void) {
 
-    printf("<Enter Phone Number You Wish to Delete:>");
+    printf("<Enter Associated Phone Number You Wish to Delete:>");
     char *input = readLine();
 
     if(!isValidInput(input)) {
@@ -92,11 +104,52 @@ static void getDeleteOption(void) {
     }
     else {
 
-        printf("\nRecord: ");
-        printRecord(node->dataList->data);
-        printf(" is Deleted Successfully.\n\n");
-        deleteFromTrie(tries[2], input, freeRecord);
+        char *details = getRecordDetail(node->dataList->data);
+        deleteRecord(node->dataList->data);
+        printf("\nRecord: %s is Deleted Successfully.\n\n", details);
+
+        free(details);
     }
+
+    free(input);
+
+    position = 0;
+}
+
+void getUpdateOption(void) {
+
+    printf("<Enter Associated Phone Number You Wish to Update:>");
+    char *input = readLine();
+
+    if(!isValidInput(input)) {
+
+        printf("<Invalid Phone Number. Please Enter Again.>\n");
+        getUpdateOption();
+
+        free(input);
+
+        return;
+    }
+
+    struct trieNode *node = retrieveTrieNode(tries[2], input);
+
+    if(node == NULL || isEmpty(node->dataList)) {
+
+        printf("\nRecord not Found.\n\n");
+    }
+    else {
+
+        char *details = getRecordDetail(node->dataList->data);
+        deleteRecord(node->dataList->data);
+        struct record *newRecord = addRecord();
+        char *newDetails = getRecordDetail(newRecord);
+        printf("Update Successful.\nOld: %s\nNew: %s\n\n", details, newDetails);
+
+        free(details);
+        free(newDetails);
+    }
+
+    free(input);
 
     position = 0;
 }
@@ -132,6 +185,11 @@ void run(void) {
                 break;
 
             case 3 :
+
+                getUpdateOption();
+
+                break;
+
             case 4 :
 
                 break;
