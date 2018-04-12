@@ -7,7 +7,7 @@ static bool isValidCharacter(char character) {
 
 bool isValidInput(char * input) {
 
-    if(strlen(input) < 1) {
+    if(strlen(input) < 1 || strlen(input) > 30) {
 
         return false;
     }

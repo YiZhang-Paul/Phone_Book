@@ -31,9 +31,46 @@ static void quit(void) {
     exit(0);
 }
 
+static char * getInformation(char * type, bool failed) {
+
+    if(failed) {
+
+        printf("<Invalid %s. Please Enter Again.>\n", type);
+    }
+
+    printf("<Enter Your %s:>", type);
+    char *input = readLine();
+
+    if(!isValidInput(input)) {
+
+        free(input);
+
+        return getInformation(type, true);
+    }
+
+    return input;
+}
+
 static struct record * addRecord(void) {
 
+    char *firstName = getInformation("First Name", false);
+    char *lastName = getInformation("Last Name", false);
+    char *phone = getInformation("Phone", false);
 
+    struct trieNode *node = retrieveTrieNode(tries[2], phone);
+
+    if(node != NULL && !isEmpty(node->dataList)) {
+
+        printf("Record with Specified Phone Number Already Exists.\n");
+
+        return NULL;
+    }
+
+    addToTrie(tries[0], firstName, createRecord(firstName, lastName, phone));
+    addToTrie(tries[1], lastName, createRecord(firstName, lastName, phone));
+    addToTrie(tries[2], phone, createRecord(firstName, lastName, phone));
+
+    return createRecord(firstName, lastName, phone);
 }
 
 static void deleteRecord(struct record * record) {
@@ -142,8 +179,18 @@ void getUpdateOption(void) {
         char *details = getRecordDetail(node->dataList->data);
         deleteRecord(node->dataList->data);
         struct record *newRecord = addRecord();
+
+        if(newRecord == NULL) {
+
+            printf("\nUpdate Failed.\n\n");
+
+            free(details);
+
+            return;
+        }
+
         char *newDetails = getRecordDetail(newRecord);
-        printf("Update Successful.\nOld: %s\nNew: %s\n\n", details, newDetails);
+        printf("\nUpdate Successful.\nOld: %s\nNew: %s\n\n", details, newDetails);
 
         free(details);
         free(newDetails);
@@ -176,7 +223,7 @@ void run(void) {
 
             case 1 :
 
-
+                
 
             case 2 :
 
