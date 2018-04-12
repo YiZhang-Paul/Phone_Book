@@ -12,6 +12,11 @@ struct record * createRecord(char * firstName, char * lastName, char * phone) {
     return record;
 }
 
+struct record * copyRecord(struct record * record) {
+
+    return createRecord(record->firstName, record->lastName, record->phone);
+}
+
 char * getRecordDetail(struct record * record) {
 
     char *details[5] = { "Name:", record->firstName, record->lastName, "Phone:", record->phone };

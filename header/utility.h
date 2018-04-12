@@ -9,6 +9,7 @@
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
+char * readLine(int);
 int countTotalLength(char **, int);
 char * copyText(char *);
 char * getSubstring(char *, int, int);

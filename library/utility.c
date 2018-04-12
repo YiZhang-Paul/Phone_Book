@@ -1,5 +1,14 @@
 #include "../header/utility.h"
 
+char * readLine(int length) {
+
+    char *line = malloc(length);
+    line = fgets(line, length, stdin);
+    line[strlen(line) - 1] = '\0';
+
+    return line;
+}
+
 int countTotalLength(char ** splitted, int total) {
 
     int length = 0;
