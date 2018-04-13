@@ -1,5 +1,6 @@
 #include "../header/utility.h"
 
+//read single line of input from standard input
 char * readLine(int length) {
 
     char *line = malloc(length);
@@ -9,7 +10,7 @@ char * readLine(int length) {
     return line;
 }
 
-bool isSame(char * text1, char * text2) {
+bool isSameText(char * text1, char * text2) {
 
     if(strlen(text1) != strlen(text2)) {
 
@@ -27,6 +28,7 @@ bool isSame(char * text1, char * text2) {
     return true;
 }
 
+//count total number of characters in a collection of character sequences
 int countTotalLength(char ** splitted, int total) {
 
     int length = 0;
@@ -61,11 +63,11 @@ char ** split(char * text, const char delimiter, int * total) {
     const int length = strlen(text);
 
     for(int i = 0, start = 0; i < length; i++) {
-
+        //include remaining portion of characters if there is any
         const bool onEnd = i == length - 1 && start < length;
 
         if(text[i] == delimiter || onEnd) {
-
+            //add splitted substrings into collection
             splitted = realloc(splitted, sizeof *splitted * (*total + 1));
             splitted[(*total)++] = getSubstring(text, start, onEnd ? i : MAX(start, i - 1));
             start = i + 1;
@@ -75,8 +77,9 @@ char ** split(char * text, const char delimiter, int * total) {
     return splitted;
 }
 
+//join collection of character sequences together with given character
 char * join(char ** splitted, const char character, int total) {
-
+    //include memory space for delimiters
     const int length = countTotalLength(splitted, total) + total - 1;
     char *joined = malloc(length + 1);
 

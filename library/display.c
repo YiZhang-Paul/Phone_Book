@@ -1,5 +1,6 @@
 #include "../header/display.h"
 
+//display all records in a linked list
 static void tryDisplay(struct trieNode * node) {
 
     if(isEmpty(node->dataList)) {
@@ -17,6 +18,7 @@ static void tryDisplay(struct trieNode * node) {
     }
 }
 
+//display record with exact attribute value
 void displayByKey(struct trieNode * root, char * keys) {
 
     struct trieNode *node = retrieveTrieNode(root, keys);
@@ -41,10 +43,11 @@ void displayByPrefix(struct trieNode * root, char * prefix) {
 
         return;
     }
-
+    //display all records with given prefix
     displayAscending(node);
 }
 
+//display all records in ascending order
 void displayAscending(struct trieNode * root) {
 
     tryDisplay(root);
@@ -53,7 +56,7 @@ void displayAscending(struct trieNode * root) {
 
         return;
     }
-
+    //traverse from lexicographically smallest to largest character key
     for(int i = 0; i < MAX_KEYS; i++) {
 
         if(root->child[i] != NULL) {
@@ -63,6 +66,7 @@ void displayAscending(struct trieNode * root) {
     }
 }
 
+//display all records in descending order
 void displayDescending(struct trieNode * root) {
 
     tryDisplay(root);
@@ -71,7 +75,7 @@ void displayDescending(struct trieNode * root) {
 
         return;
     }
-
+    //traverse from lexicographically largest to smallest character key
     for(int i = MAX_KEYS - 1; i >= 0; i--) {
 
         if(root->child[i] != NULL) {

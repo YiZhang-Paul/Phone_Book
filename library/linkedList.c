@@ -16,6 +16,11 @@ void freeListNode(struct listNode * node, void freeData(void *)) {
     free(node);
 }
 
+bool isEmpty(struct listNode * head) {
+
+    return head == NULL;
+}
+
 static struct listNode * getListTail(struct listNode * head) {
 
     while(head != NULL && head->next != NULL) {
@@ -26,11 +31,7 @@ static struct listNode * getListTail(struct listNode * head) {
     return head;
 }
 
-bool isEmpty(struct listNode * head) {
-
-    return head == NULL;
-}
-
+//add data to the end of list
 void addToList(struct listNode ** head, void * data) {
 
     struct listNode *node = createListNode(data);
@@ -45,14 +46,13 @@ void addToList(struct listNode ** head, void * data) {
     getListTail(*head)->next = node;
 }
 
-
 void freeList(struct listNode ** head, void freeData(void *)) {
 
     struct listNode *current = *head;
     struct listNode *previous;
 
     while(current != NULL) {
-
+        //keep reference of current node
         previous = current;
         current = current->next;
         freeListNode(previous, freeData);

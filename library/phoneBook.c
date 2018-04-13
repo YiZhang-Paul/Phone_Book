@@ -1,7 +1,7 @@
 #include "../header/utility.h"
 #include "../header/phoneBook.h"
 
-int position;
+int position; //current menu position
 struct trieNode *tries[FIELDS];
 
 static void initialize(void) {
@@ -12,9 +12,10 @@ static void initialize(void) {
     }
 
     load(tries, FILE_NAME);
-    position = 0;
+    position = 0; //default position for main menu
 }
 
+//prompt user for input
 static char * getInformation(char * attribute, bool failed) {
 
     if(failed) {
@@ -28,7 +29,7 @@ static char * getInformation(char * attribute, bool failed) {
     if(!isValidInput(input)) {
 
         free(input);
-
+        //prompt until valid input is received
         return getInformation(attribute, true);
     }
 
@@ -44,6 +45,7 @@ static void showListOption(void) {
     printf("4. By Descending Order\n");
 }
 
+//prompt for user selection of list option
 static int getListOption(void) {
 
     char *input = readLine(LINE_LENGTH);
@@ -63,6 +65,7 @@ static int getListOption(void) {
     return option;
 }
 
+//display records by given attribute
 static void listByAttribute(struct trieNode * root, char * attribute) {
 
     char *input;
@@ -99,6 +102,7 @@ static void listByAttribute(struct trieNode * root, char * attribute) {
     free(input);
 }
 
+//add copies of record to all tries
 static void addRecordToTries(char * firstName, char * lastName, char * phone) {
 
     addToTrie(tries[0], firstName, createRecord(firstName, lastName, phone));
@@ -107,7 +111,7 @@ static void addRecordToTries(char * firstName, char * lastName, char * phone) {
 }
 
 static struct record * addRecord(void) {
-
+    //retrieve user input
     char *firstName = getInformation("First Name", false);
     char *lastName = getInformation("Last Name", false);
     char *phone = getInformation("Phone", false);
@@ -122,10 +126,11 @@ static struct record * addRecord(void) {
     }
 
     addRecordToTries(firstName, lastName, phone);
-
+    //return copy of new record added
     return createRecord(firstName, lastName, phone);
 }
 
+//delete record from all tries
 static void deleteRecord(struct record * record) {
 
     deleteFromTrie(tries[0], record->firstName, record, freeRecord);
@@ -134,13 +139,14 @@ static void deleteRecord(struct record * record) {
 }
 
 static void saveAll(void) {
-
+    //overwrite existing file
     createFile(FILE_NAME);
+    //save by phone number since phone numbers are unique
     save(tries[2], FILE_NAME);
 }
 
 static void quit(void) {
-
+    //free memory allocated for all tries
     for(int i = 0; i < FIELDS; i++) {
 
         freeTrie(tries[i], freeRecord);
@@ -164,7 +170,7 @@ static void mainMenu(void) {
 
         return;
     }
-
+    //jump to corresponding menu position
     switch(input[0]) {
 
         case '1' : case '2' : case '3' : case '4' :
@@ -175,6 +181,7 @@ static void mainMenu(void) {
 
         case '5' :
 
+            free(input);
             quit();
 
             break;
@@ -219,7 +226,7 @@ static void deleteMenu(void) {
         printf("\nRecord not Found.\n\n");
     }
     else {
-
+        //keep old record details before deleting
         char *details = getRecordDetail(node->dataList->data);
         deleteRecord(node->dataList->data);
         printf("\nRecord: %s is Deleted Successfully.\n\n", details);
@@ -255,13 +262,13 @@ static void updateMenu(void) {
         printf("\nRecord not Found.\n\n");
     }
     else {
-
+        //keep old record details before deleting
         struct record *oldRecord = copyRecord(node->dataList->data);
         deleteRecord(node->dataList->data);
         struct record *newRecord = addRecord();
 
         if(newRecord == NULL) {
-
+            //add old record back when update failed
             addRecordToTries(oldRecord->firstName, oldRecord->lastName, oldRecord->phone);
             printf("\nUpdate Failed.\n\n");
 
@@ -301,7 +308,7 @@ static void listMenu(void) {
 
         return;
     }
-
+    //display records
     switch(input[0]) {
 
         case '1' :
@@ -334,7 +341,7 @@ static void listMenu(void) {
 void run(void) {
 
     initialize();
-
+    //main loop
     while(true) {
 
         switch(position) {

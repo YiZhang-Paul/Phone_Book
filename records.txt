@@ -1,3 +1,4 @@
-David|Liu|120
 Yi|Zhang|6472428109
 Jim|Raynor|667
+Ji|Moe|77
+Nick|Wu|999

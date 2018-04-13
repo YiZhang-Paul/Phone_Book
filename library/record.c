@@ -17,11 +17,12 @@ struct record * copyRecord(struct record * record) {
     return createRecord(record->firstName, record->lastName, record->phone);
 }
 
+//check if two records have same content
 bool isSameRecord(struct record * record1, struct record * record2) {
 
     char *details1 = getRecordDetail(record1);
     char *details2 = getRecordDetail(record2);
-    bool result = isSame(details1, details2);
+    bool result = isSameText(details1, details2);
 
     free(details1);
     free(details2);
@@ -29,6 +30,7 @@ bool isSameRecord(struct record * record1, struct record * record2) {
     return result;
 }
 
+//retrieve all information in a record
 char * getRecordDetail(struct record * record) {
 
     char *details[5] = { "Name:", record->firstName, record->lastName, "Phone:", record->phone };
@@ -44,6 +46,7 @@ void printRecord(struct record * record) {
     free(details);
 }
 
+//save record information to file
 void saveRecord(struct record * record, char * fileName) {
 
     FILE *file = fopen(fileName, "a");
